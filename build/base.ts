@@ -1,5 +1,6 @@
 const { resolve } = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 import * as paths from './paths'
 
 export const baseConfig = {
@@ -31,9 +32,13 @@ export const baseConfig = {
       {
         test: /\.html$/,
         loaders: [
+          'ngtemplate-loader',
           'html-loader',
         ],
-        exclude: /node_modules/,
+        exclude: [
+          /node_modules/,
+          resolve(__dirname, '../src/index.html')
+        ],
       },
       {
         test: /\.css/,

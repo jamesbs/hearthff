@@ -1,4 +1,4 @@
-const { resolve } = require('path')
+import { resolve } from 'path'
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 import * as paths from './paths'
@@ -26,19 +26,16 @@ export const baseConfig = {
     loaders: [
       {
         test: /\.ts$/,
-        loader: 'ts-loader',
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.html$/,
         loaders: [
-          'ngtemplate-loader',
-          'html-loader',
+         {
+           loader: 'ng-annotate-loader',
+           query: {
+             add: true,
+           },
+         },
+         'ts-loader',
         ],
-        exclude: [
-          /node_modules/,
-          resolve(__dirname, '../src/index.html')
-        ],
+        exclude: /node_modules/,
       },
       {
         test: /\.css/,

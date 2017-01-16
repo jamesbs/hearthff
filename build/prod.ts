@@ -1,4 +1,5 @@
 const merge = require('webpack-merge')
+import { resolve } from 'path'
 
 import { baseConfig } from './base'
 import * as paths from './paths'
@@ -10,6 +11,17 @@ export const prodConfig = merge(baseConfig, {
 
   module: {
     loaders: [
+      {
+        test: /\.html$/,
+        loaders: [
+          'ngtemplate-loader',
+          'html-loader',
+        ],
+        exclude: [
+          /node_modules/,
+          resolve(__dirname, '../src/index.html')
+        ],
+      },
       {
         test: /\.(gif|jpg|jpeg|png)/,
         loaders: [

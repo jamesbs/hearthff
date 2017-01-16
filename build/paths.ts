@@ -1,4 +1,4 @@
-const { resolve } = require('path')
+import { resolve } from 'path'
 
 export const source = resolve(__dirname, '../src')
 
